@@ -26,6 +26,10 @@ app.get('/terms', (req, res) => {
   res.sendFile(path.join(PUBLIC_DIR, 'terms.html'));
 });
 
+app.get('/mentions-legales', (req, res) => {
+  res.sendFile(path.join(PUBLIC_DIR, 'mentions-legales.html'));
+});
+
 // ── Fichiers statiques ──────────────────────────────────────
 app.use(express.static(PUBLIC_DIR, {
   maxAge: '1h',
