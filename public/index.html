@@ -132,6 +132,16 @@ nav {
   transition:background .2s, transform .15s;
 }
 .nav-cta:hover { background:var(--green-dark); transform:translateY(-1px); }
+/* Boutons stores du bandeau (styles sortis de l'attribut style= pour être
+   ajustables en version téléphone). */
+.nav-store-btn {
+  display:inline-flex; align-items:center; gap:7px;
+  background:#111; color:#fff;
+  padding:8px 14px; border-radius:10px;
+  text-decoration:none; font-size:13px; font-weight:600;
+  white-space:nowrap; transition:transform .15s;
+}
+.nav-store-btn-soon { opacity:.5; cursor:default; }
 
 /* ── HERO ── */
 .hero { padding:148px 0 96px; background:var(--white); }
@@ -640,6 +650,22 @@ footer {
   .footer-grid  { grid-template-columns:1fr; }
 }
 
+/* ── Bandeau du haut sur téléphone ──────────────────────────────
+   ⚠️ Avant, AUCUNE règle mobile ne touchait le bandeau : il tentait de
+   faire tenir le logo + « La méthode » + « Tarifs » + le bouton App Store
+   + le badge « Bientôt » dans ~326 px utiles. Tout se tassait et passait
+   sur deux lignes (constaté sur iPhone le 13/08/2026).
+   Version téléphone : logo à gauche, un seul bouton App Store à droite.
+   Les sections restent atteignables en faisant défiler la page. */
+@media (max-width:640px) {
+  .nav-only-desktop { display:none; }
+  .nav-inner { padding:0 18px; height:60px; gap:12px; }
+  .nav-logo { gap:9px; min-width:0; }
+  .nav-logo-icon { width:30px; height:30px; }
+  .nav-logo-text { font-size:15px; }
+  .nav-right { gap:0; flex-shrink:0; }
+}
+
 </style>
 </head>
 <body>
@@ -663,13 +689,13 @@ footer {
       </div>
     </a>
     <div class="nav-right">
-      <a href="#methode" class="nav-link">La méthode</a>
-      <a href="#prix" class="nav-link">Tarifs</a>
-      <a href="https://apps.apple.com/fr/app/mustawa-apprendre-larabe/id6767192305" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;background:#111;color:#fff;padding:8px 14px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:600;transition:transform .15s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
+      <a href="#methode" class="nav-link nav-only-desktop">La méthode</a>
+      <a href="#prix" class="nav-link nav-only-desktop">Tarifs</a>
+      <a href="https://apps.apple.com/fr/app/mustawa-apprendre-larabe/id6767192305" target="_blank" rel="noopener" class="nav-store-btn" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='none'">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         App Store
       </a>
-      <span aria-disabled="true" title="Bientôt disponible" style="display:inline-flex;align-items:center;gap:7px;background:#111;color:#fff;padding:8px 14px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:600;opacity:.5;cursor:default;">
+      <span aria-disabled="true" title="Bientôt disponible" class="nav-store-btn nav-store-btn-soon nav-only-desktop">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l12.6-7.28-2.7-2.7-10.89 9.84zm-1.16-1.4V1.64c0-.5.27-.93.69-1.17l12.25 12.25L2.71 24.93c-.42-.24-.69-.67-.69-1.17v-.4zM21.4 10.5l-2.68-1.54-3.07 3.08 3.07 3.07 2.7-1.56c.77-.45.77-1.6-.02-2.05zM4.17.38L16.76 7.66l-2.7 2.7L3.16.52c.3-.2.65-.28 1.01-.14z"/></svg>
         Bientôt
       </span>
